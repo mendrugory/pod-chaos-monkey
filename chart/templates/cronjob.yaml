@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  schedule: "{{ .Values.schedule }}"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: {{ .Release.Name }}
+          containers:
+          - name: {{ .Release.Name }}
+            image: {{ .Values.image }}
+            imagePullPolicy: IfNotPresent
+            args:
+            - mess_up
+            - {{ .Values.namespace }}
+          restartPolicy: OnFailure

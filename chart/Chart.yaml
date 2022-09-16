@@ -1,0 +1,5 @@
+apiVersion: v2
+name: pod-chaos-monkey
+description: Helm chart for for pod-chaos-monkey
+version: "0.0.0"
+appVersion: "0.0.0"
